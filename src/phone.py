@@ -17,6 +17,11 @@ def format_brazilian_phone(phone: str) -> str:
 
     Returns:
         str: Formatted phone string: (XX) 9XXXX-XXXX
+
+    Example:
+        - format_brazilian_phone("11912345678")  # Returns: "(11) 91234-5678"
+        - format_brazilian_phone("(21) 98765-4321")#Returns: "(21) 99876-5432"
+        - format_brazilian_phone("1234")  # Returns: "12 934-1234"
     """
     # Remove tudo que não for número
     digits = re.sub(r"\D", "", phone)[:11]  # máximo 11 dígitos
@@ -57,6 +62,11 @@ def validate_brazilian_phone(phone: str) -> bool:
 
     Returns:
         bool: True if phone number is valid (10 or 11 digits), False otherwise
+
+    Example:
+        - validate_brazilian_phone("11912345678")  # Returns: True
+        - validate_brazilian_phone("(21) 98765-4321")  # Returns: True
+        - validate_brazilian_phone("1234")  # Returns: False
     """
     digits = re.sub(r"\D", "", phone)
     # Accept both 10 digits (will add 9) and 11 digits
@@ -72,6 +82,11 @@ def clean_phone(phone: str) -> str:
 
     Returns:
         str: Phone number with only digits
+
+    Example:
+        - clean_phone("(11) 91234-5678")  # Returns: "11912345678"
+        - clean_phone("21 98765 4321")  # Returns: "21987654321"
+        - clean_phone("1234")  # Returns: "1234"
     """
     return re.sub(r"\D", "", phone)
 
@@ -85,6 +100,11 @@ def is_valid_ddd(ddd: str) -> bool:
 
     Returns:
         bool: True if DDD is valid, False otherwise
+
+    Example:
+        - is_valid_ddd("11")  # Returns: True
+        - is_valid_ddd("99")  # Returns: True
+        - is_valid_ddd("00")  # Returns: False
     """
     valid_ddds = {
         "11",

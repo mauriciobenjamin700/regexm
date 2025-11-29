@@ -17,6 +17,11 @@ def validate_password_length(password: str, min_length: int = 8) -> bool:
 
     Returns:
         bool: True if password meets length requirement, False otherwise
+
+    Example:
+        - validate_password_length("mypassword")  # Returns: True
+        - validate_password_length("short", 6)  # Returns: False
+        - validate_password_length("longenough", 10)  # Returns: True
     """
     return len(password) >= min_length
 
@@ -30,6 +35,34 @@ def validate_password_strength(password: str) -> dict:
 
     Returns:
         dict: Dictionary with strength validation results
+
+    Example:
+        - validate_password_strength("Password123!")
+          - Returns: {
+            "valid": True,
+            "score": 5,
+            "errors": [],
+            "has_lowercase": True,
+            "has_uppercase": True,
+            "has_digit": True,
+            "has_special": True,
+            "has_min_length": True
+            }
+        - validate_password_strength("weakpass")
+          - Returns: {
+            "valid": False,
+            "score": 2,
+            "errors": [
+                "Password must contain uppercase letters",
+                "Password must contain numbers",
+                "Password must contain special characters"
+            ],
+            "has_lowercase": True,
+            "has_uppercase": False,
+            "has_digit": False,
+            "has_special": False,
+            "has_min_length": True
+            }
     """
     result = {
         "valid": True,
@@ -96,5 +129,9 @@ def validate_password_match(password: str, confirm_password: str) -> bool:
 
     Returns:
         bool: True if passwords match, False otherwise
+
+    Example:
+        - validate_password_match("mypassword", "mypassword")  # Returns: True
+        - validate_password_match("mypassword", "different")  # Returns: False
     """
     return password == confirm_password

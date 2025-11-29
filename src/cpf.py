@@ -18,8 +18,12 @@ def format_cpf(cpf: str) -> str:
     Returns:
         str: Formatted CPF string if it has 11 digits, otherwise returns the
         cleaned input
+
+    Example:
+        - format_cpf("12345678901")  # Returns: "123.456.789-01"
+        - format_cpf("123.456.789-01")  # Returns: "123.456.789-01"
+        - format_cpf("1234567890")  # Returns: "1234567890"
     """
-    # Remove tudo que não for número
     cpf = re.sub(r"\D", "", cpf)
 
     # Aplica a máscara se tiver 11 dígitos
@@ -38,8 +42,13 @@ def validate_cpf(cpf: str) -> bool:
 
     Returns:
         bool: True if CPF is valid, False otherwise
+
+    Example:
+        - validate_cpf("123.456.789-09")  # Returns: False
+        - validate_cpf("111.444.777-35")  # Returns: True
+        - validate_cpf("12345678909")  # Returns: False
+        - validate_cpf("11144477735")  # Returns: True
     """
-    # Remove tudo que não for número
     cpf = re.sub(r"\D", "", cpf)
 
     # CPF deve ter 11 dígitos e não pode ter todos os dígitos iguais
@@ -72,7 +81,11 @@ def is_cpf_format(cpf: str) -> bool:
 
     Returns:
         bool: True if string has CPF format, False otherwise
+
+    Example:
+        - is_cpf_format("123.456.789-01")  # Returns: True
+        - is_cpf_format("12345678901")  # Returns: True
+        - is_cpf_format("1234567890")  # Returns: False
     """
-    # Remove formatação
     clean_cpf = re.sub(r"\D", "", cpf)
     return len(clean_cpf) == 11 and clean_cpf.isdigit()

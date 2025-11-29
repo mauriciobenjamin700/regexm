@@ -20,6 +20,11 @@ def validate_plate(plate: str) -> bool:
 
     Returns:
         bool: True if plate is valid, False otherwise
+
+    Example:
+        - validate_plate("ABC-1234")  # Returns: True
+        - validate_plate("ABC1D23")  # Returns: True
+        - validate_plate("A1B2C3D")  # Returns: False
     """
     # Remove espaços e hífens, converte para maiúsculo
     limpo = re.sub(r"[\s\-]", "", plate).upper()
@@ -45,6 +50,11 @@ def format_plate(plate: str, format_type: str = "clean") -> str:
 
     Returns:
         str: Formatted plate string
+
+    Example:
+        - format_plate("ABC-1234", "clean")  # Returns: "ABC1234"
+        - format_plate("ABC1234", "dash")  # Returns: "ABC-1234"
+        - format_plate("ABC1D23", "dash")  # Returns: "ABC-1D23"
     """
     # Remove espaços e hífens, converte para maiúsculo
     clean_plate = re.sub(r"[\s\-]", "", plate).upper()
@@ -69,6 +79,10 @@ def is_old_format_plate(plate: str) -> bool:
 
     Returns:
         bool: True if plate follows old format, False otherwise
+
+    Example:
+        - is_old_format_plate("ABC-1234")  # Returns: True
+        - is_old_format_plate("ABC1D23")  # Returns: False
     """
     limpo = re.sub(r"[\s\-]", "", plate).upper()
     return bool(re.match(r"^[A-Z]{3}\d{4}$", limpo))
@@ -83,6 +97,11 @@ def is_mercosul_format_plate(plate: str) -> bool:
 
     Returns:
         bool: True if plate follows Mercosul format, False otherwise
+
+    Example:
+        - is_mercosul_format_plate("ABC1D23")  # Returns: True
+        - is_mercosul_format_plate("ABC-1234")  # Returns: False
+        - is_mercosul_format_plate("ABC1234")  # Returns: False
     """
     limpo = re.sub(r"[\s\-]", "", plate).upper()
     return bool(re.match(r"^[A-Z]{3}\d[A-Z]\d{2}$", limpo))

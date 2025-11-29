@@ -1,16 +1,18 @@
-# REGEX LIB
+# REGEX-M
 
 Este projeto é uma biblioteca Python para validação de documentos brasileiros e dados de formulários comuns em aplicações web.
 
 ## 📋 Funcionalidades
 
 ### Documentos Brasileiros
+
 - **CPF**: Validação com algoritmo oficial e formatação
 - **CRV**: Validação de Certificado de Registro de Veículo  
 - **CNH**: Validação de Carteira Nacional de Habilitação
 - **Placas**: Suporte aos formatos antigo (AAA-0000) e Mercosul (AAA0A00)
 
 ### Dados de Formulários
+
 - **Email**: Validação com regex e extração de domínio/usuário
 - **Telefone**: Formatação automática para padrão brasileiro com DDD
 - **Senha**: Validação de força e critérios de segurança
@@ -23,7 +25,7 @@ Este projeto é uma biblioteca Python para validação de documentos brasileiros
 ```bash
 # Clone o projeto
 git clone <seu-repositorio>
-cd regex-lib
+cd regexm
 
 # Execute os exemplos
 python quick_start.py
@@ -62,8 +64,8 @@ print(result['errors']) # Lista de erros, se houver
 ## 📁 Estrutura do Projeto
 
 ```
-regex-lib/
-├── validators/
+regexm/
+├── src/
 │   ├── __init__.py
 │   ├── cpf.py          # Validação de CPF
 │   ├── crv.py          # Validação de CRV
@@ -72,29 +74,29 @@ regex-lib/
 │   ├── email.py        # Validação de email
 │   ├── phone.py        # Validação e formatação de telefone
 │   ├── password.py     # Validação de senhas
-│   ├── driver.py       # Validação combinada para motoristas
-│   └── user.py         # Validação combinada para usuários
-├── examples.py         # Exemplos detalhados de uso
-├── quick_start.py      # Guia de início rápido
 └── README.md
 ```
 
 ## 🔧 Principais Funções
 
 ### CPF
+
 - `validate_cpf(cpf)` - Valida CPF com algoritmo oficial
 - `format_cpf(cpf)` - Formata para XXX.XXX.XXX-XX
 
 ### Telefone
+
 - `validate_brazilian_phone(phone)` - Valida número brasileiro (11 dígitos)
 - `format_brazilian_phone(phone)` - Formata para (XX) 9XXXX-XXXX
 
 ### Placas de Veículos
+
 - `validate_plate(plate)` - Valida formatos antigo e Mercosul
 - `is_old_format_plate(plate)` - Verifica formato antigo
 - `is_mercosul_format_plate(plate)` - Verifica formato Mercosul
 
 ### Validação Combinada
+
 - `validate_user_data(data)` - Valida dados completos de usuário
 - `validate_driver_data(cnh, crv, plate)` - Valida dados de motorista
 
@@ -105,6 +107,7 @@ Execute `python examples.py` para ver todos os testes e exemplos de uso.
 ## 🎯 Casos de Uso
 
 Esta biblioteca é ideal para:
+
 - Validação de formulários de cadastro
 - APIs de registro de usuários
 - Sistemas de cadastro de motoristas/veículos
@@ -126,5 +129,5 @@ Todas as validações são otimizadas com regex e algoritmos eficientes, adequad
 
 ---
 
-**Autor**: Maurício Benjamim  
+**Autor**: Mauricio Benjamim  
 **Versão**: 1.0.0

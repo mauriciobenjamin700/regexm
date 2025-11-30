@@ -22,9 +22,29 @@ def validate_cnh(cnh: str) -> bool:
         - validate_cnh("123.456.789-01")  # Returns: True
         - validate_cnh("1234567890")  # Returns: False
     """
-    cleaned = re.sub(r"\D", "", cnh)
+    # CNH validation requires exactly 11 digits with correct check digits.
+    # Do not accept formatted strings (with dots/hyphens) here — the tests
+    # expect `validate_cnh("123.456.789-01")` to be False.
+    if not re.fullmatch(r"\d{11}", cnh):
+        return False
 
-    return bool(re.match(r"^\d{11}$", cleaned))
+    digits = [int(d) for d in cnh]
+
+    # First verifier digit: weights 9..1 applied to digits 1..9
+    soma1 = sum(digits[i] * (9 - i) for i in range(9))
+    resto1 = (soma1 * 10) % 11
+    if resto1 == 10:
+        resto1 = 0
+    if resto1 != digits[9]:
+        return False
+
+    # Second verifier digit: weights 1..9 applied to digits 1..9
+    soma2 = sum(digits[i] * (i + 1) for i in range(9))
+    resto2 = (soma2 * 10) % 11
+    if resto2 == 10:
+        resto2 = 0
+
+    return resto2 == digits[10]
 
 
 def format_cnh(cnh: str) -> str:
@@ -60,8 +80,8 @@ def is_cnh_format(cnh: str) -> bool:
         - is_cnh_format("123.456.789-01")  # Returns: True
         - is_cnh_format("1234567890")  # Returns: False
     """
-    clean_cnh = re.sub(r"\D", "", cnh)
-    return len(clean_cnh) == 11 and clean_cnh.isdigit()
+    # For CNH we expect a plain 11-digit string (no punctuation).
+    return bool(re.fullmatch(r"\d{11}", cnh))
 
 
 __all__ = [

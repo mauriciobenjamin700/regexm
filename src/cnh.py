@@ -62,3 +62,10 @@ def is_cnh_format(cnh: str) -> bool:
     """
     clean_cnh = re.sub(r"\D", "", cnh)
     return len(clean_cnh) == 11 and clean_cnh.isdigit()
+
+
+__all__ = [
+    "validate_cnh",
+    "format_cnh",
+    "is_cnh_format",
+]

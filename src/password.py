@@ -135,3 +135,10 @@ def validate_password_match(password: str, confirm_password: str) -> bool:
         - validate_password_match("mypassword", "different")  # Returns: False
     """
     return password == confirm_password
+
+
+__all__ = [
+    "validate_password_length",
+    "validate_password_strength",
+    "validate_password_match",
+]

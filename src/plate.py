@@ -105,3 +105,11 @@ def is_mercosul_format_plate(plate: str) -> bool:
     """
     limpo = re.sub(r"[\s\-]", "", plate).upper()
     return bool(re.match(r"^[A-Z]{3}\d[A-Z]\d{2}$", limpo))
+
+
+__all__ = [
+    "validate_plate",
+    "format_plate",
+    "is_old_format_plate",
+    "is_mercosul_format_plate",
+]

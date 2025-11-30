@@ -176,3 +176,11 @@ def is_valid_ddd(ddd: str) -> bool:
         "99",  # Maranhão
     }
     return ddd in valid_ddds
+
+
+__all__ = [
+    "format_brazilian_phone",
+    "validate_brazilian_phone",
+    "clean_phone",
+    "is_valid_ddd",
+]

@@ -89,3 +89,10 @@ def is_cpf_format(cpf: str) -> bool:
     """
     clean_cpf = re.sub(r"\D", "", cpf)
     return len(clean_cpf) == 11 and clean_cpf.isdigit()
+
+
+__all__ = [
+    "format_cpf",
+    "validate_cpf",
+    "is_cpf_format",
+]
